@@ -1,0 +1,54 @@
+<!-- header.html -->
+<header class="header">
+    <div class="container-fluid">
+        <a href="index.html" class="logo">
+            <h1 class="sitename">Gerald</h1>
+        </a>
+
+        <nav class="navmenu">
+            <ul>
+                <li><a href="index2.html">Home</a></li>
+                <li><a href="about2.html">About</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="services2.html">Services</a></li>
+                <li><a href="contact2.html">Contact</a></li>
+            </ul>
+            <button class="mobile-nav-toggle" aria-label="Menu">
+                <i class="uil uil-bars"></i>
+            </button>
+        </nav>
+    </div>
+</header>
+
+<script>
+// Mobile navigation toggle
+document.querySelector('.mobile-nav-toggle').addEventListener('click', () => {
+    const navMenu = document.querySelector('.navmenu ul');
+    const isExpanded = document.querySelector('.mobile-nav-toggle').getAttribute('aria-expanded') === 'true';
+    
+    document.querySelector('.mobile-nav-toggle').setAttribute('aria-expanded', !isExpanded);
+    navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// Set active navigation link
+const currentPage = window.location.pathname.split('/').pop();
+const navLinks = document.querySelectorAll('.navmenu a');
+
+navLinks.forEach(link => {
+    const linkPage = link.getAttribute('href');
+    if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+        link.classList.add('active');
+    }
+});
+
+// Header scroll effect
+const header = document.querySelector('.header');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        header.classList.add('header-scrolled');
+    } else {
+        header.classList.remove('header-scrolled');
+    }
+});
+</script>
